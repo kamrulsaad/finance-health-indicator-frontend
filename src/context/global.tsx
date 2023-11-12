@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 import axios from "axios";
-import { Income } from "../types/income";
 import { GlobalContent } from "../types/context";
 import { Expense } from "../types/expense";
+import { Income } from "../types/income";
 
 const BASE_URL = "http://localhost:5000/api/v1/";
 
@@ -18,9 +18,10 @@ export const GlobalContext = createContext<GlobalContent>({
   deleteExpense: () => {},
   totalExpenses: () => 0,
   totalBalance: () => 0,
-  // transactionHistory: () => {},
+  transactionHistory: () => [null],
   error: "",
   setError: () => {},
+  accountHealth: () => ({ health: 0, status: "" }),
 });
 
 interface Props {
@@ -90,14 +91,44 @@ export const GlobalProvider = ({ children }: Props) => {
     return totalIncome() - totalExpenses();
   };
 
-  // const transactionHistory = () => {
-  //   const history = [...incomes, ...expenses];
-  //   history.sort((a, b) => {
-  //     return new Date(b.createdAt) - new Date(a.createdAt);
-  //   });
+  const transactionHistory = () => {
+    const history = [...incomes, ...expenses];
+    history.sort((a, b) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
-  //   return history.slice(0, 3);
-  // };
+    return history.slice(0, 3) as unknown as [Income | null];
+  };
+
+  const accountHealth = () => {
+    const balance = totalBalance();
+    const income = totalIncome();
+    const health = (balance / income) * 100;
+    let status: string;
+    switch (true) {
+      case health > 0 && health <= 10:
+        status = "Poor";
+        break;
+      case health > 10 && health <= 50:
+        status = "Fair";
+        break;
+      case health > 50 && health <= 75:
+        status = "Good";
+        break;
+      case health > 75 && health <= 100:
+        status = "Excellent";
+        break;
+      default:
+        status = "Poor";
+        break;
+    }
+    return {
+      health: health > 0 ? health : 0,
+      status,
+    };
+  };
 
   return (
     <GlobalContext.Provider
@@ -113,9 +144,10 @@ export const GlobalProvider = ({ children }: Props) => {
         deleteExpense,
         totalExpenses,
         totalBalance,
-        // transactionHistory,
+        transactionHistory,
         error,
         setError,
+        accountHealth,
       }}
     >
       {children}

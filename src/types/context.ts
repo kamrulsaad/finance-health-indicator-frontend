@@ -13,7 +13,11 @@ export type GlobalContent = {
   deleteExpense: (id: number) => void;
   totalExpenses: () => number;
   totalBalance: () => number;
-  // transactionHistory: any;
+  transactionHistory: () => [Income | null];
   error: string;
   setError: (error: string) => void;
+  accountHealth: () => {
+    health: number;
+    status: string;
+  };
 };
