@@ -14,8 +14,8 @@ const Navigation = ({ active, setActive }: NavigationProps) => {
       <div className="user-con">
         <img src={avatar} alt="" />
         <div className="text">
-          <h2>Mike</h2>
-          <p>Your Money</p>
+          <h2>BigTech</h2>
+          <p>Admin</p>
         </div>
       </div>
       <ul className="menu-items">

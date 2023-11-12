@@ -4,7 +4,7 @@ import { GlobalContent } from "../types/context";
 import { Expense } from "../types/expense";
 import { Income } from "../types/income";
 
-const BASE_URL = "http://localhost:5000/api/v1/";
+const BASE_URL = "https://finance-health-indicator-backend.vercel.app/api/v1/";
 
 export const GlobalContext = createContext<GlobalContent>({
   addIncome: () => {},
