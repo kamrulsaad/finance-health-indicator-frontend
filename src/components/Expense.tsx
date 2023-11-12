@@ -1,36 +1,50 @@
 import styled from "styled-components";
 import { InnerLayout } from "../styles/Layout";
+import { useGlobalContext } from "../utils/useGlobalContext";
+import IncomeItem from "./IncomeItem";
+import { useEffect } from "react";
+import ExpenseForm from "./ExpenseForm";
 
 function Expense() {
-  // const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+  const { expenses, getExpenses, deleteExpense, totalExpenses } =
+    useGlobalContext();
 
-  // useEffect(() =>{
-  //     getExpenses()
-  // }, [])
+  useEffect(() => {
+    getExpenses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ExpenseStyled>
       <InnerLayout>
         <h1>Expenses</h1>
-        {/* <h2 className="total-income">Total Expense: <span>${totalExpenses()}</span></h2> */}
+        <h2 className="total-income">
+          Total Expense: <span>${totalExpenses()}</span>
+        </h2>
         <div className="income-content">
-          <div className="form-container">{/* <ExpenseForm /> */}</div>
+          <div className="form-container">
+            <ExpenseForm />
+          </div>
           <div className="incomes">
-            {/* {expenses.map((income) => {
-                            const {_id, title, amount, date, category, description, type} = income;
-                            console.log(income)
-                            return <IncomeItem
-                                key={_id}
-                                id={_id} 
-                                title={title} 
-                                description={description} 
-                                amount={amount} 
-                                date={date} 
-                                type={type}
-                                category={category} 
-                                indicatorColor="var(--color-green)"
-                                deleteItem={deleteExpense}
-                            />
-                        })} */}
+            {expenses.map((income) => {
+              const { id, title, amount, date, category, description, type } =
+                income;
+              console.log(income);
+              return (
+                <IncomeItem
+                  key={id}
+                  id={id!}
+                  title={title}
+                  description={description}
+                  amount={amount}
+                  date={date}
+                  type={type!}
+                  category={category}
+                  indicatorColor="var(--color-green)"
+                  deleteItem={deleteExpense}
+                />
+              );
+            })}
           </div>
         </div>
       </InnerLayout>

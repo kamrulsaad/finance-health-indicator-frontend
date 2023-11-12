@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import axios from "axios";
 import { Income } from "../types/income";
 import { GlobalContent } from "../types/context";
+import { Expense } from "../types/expense";
 
 const BASE_URL = "http://localhost:5000/api/v1/";
 
@@ -34,19 +35,18 @@ export const GlobalProvider = ({ children }: Props) => {
   //   calculate incomes
   const addIncome = async (income: Income) => {
     await axios.post(`${BASE_URL}income`, income).catch((err) => {
-      setError(err.response.message);
+      setError(err.response.data.message);
     });
     getIncomes();
   };
 
   const getIncomes = async () => {
     const response = await axios.get(`${BASE_URL}income`);
-    console.log(response);
     setIncomes(response.data.data);
   };
 
   const deleteIncome = async (id: number) => {
-    await axios.delete(`${BASE_URL}delete-income/${id}`);
+    await axios.delete(`${BASE_URL}income/${id}`);
     getIncomes();
   };
 
@@ -59,28 +59,27 @@ export const GlobalProvider = ({ children }: Props) => {
     return totalIncome;
   };
 
-  //calculate incomes
-  const addExpense = async (income: Income) => {
-    await axios.post(`${BASE_URL}add-expense`, income).catch((err) => {
+  //calculate expenses
+  const addExpense = async (income: Expense) => {
+    await axios.post(`${BASE_URL}expense`, income).catch((err) => {
       setError(err.response.data.message);
     });
     getExpenses();
   };
 
   const getExpenses = async () => {
-    const response = await axios.get(`${BASE_URL}get-expenses`);
-    setExpenses(response.data);
-    console.log(response.data);
+    const response = await axios.get(`${BASE_URL}expense`);
+    setExpenses(response.data.data);
   };
 
   const deleteExpense = async (id: number) => {
-    await axios.delete(`${BASE_URL}delete-expense/${id}`);
+    await axios.delete(`${BASE_URL}expense/${id}`);
     getExpenses();
   };
 
   const totalExpenses = () => {
     let totalIncome = 0;
-    expenses.forEach((income: Income) => {
+    expenses.forEach((income: Expense) => {
       totalIncome = totalIncome + income.amount;
     });
 

@@ -1,15 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Income } from "../types/income";
-import { useGlobalContext } from "../utils/useGlobalContext";
 import Button from "./Button";
 import { plus } from "../utils/Icons";
+import { useGlobalContext } from "../utils/useGlobalContext";
+import { Expense } from "../types/expense";
 
-function Form() {
-  const { addIncome, error, setError } = useGlobalContext();
-  const [inputState, setInputState] = useState<Income>({
+function ExpenseForm() {
+  const { addExpense, error, setError } = useGlobalContext();
+  const [inputState, setInputState] = useState<Expense>({
     title: "",
     amount: 0,
     date: "",
@@ -32,8 +32,7 @@ function Form() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    addIncome(inputState);
+    addExpense(inputState);
     setInputState({
       title: "",
       amount: 0,
@@ -44,23 +43,23 @@ function Form() {
   };
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <ExpenseFormStyled onSubmit={handleSubmit}>
       {error && <p className="error">{error}</p>}
       <div className="input-control">
         <input
           type="text"
           value={title}
           name={"title"}
-          placeholder="Title"
+          placeholder="Expense Title"
           onChange={handleInput("title")}
         />
       </div>
       <div className="input-control">
         <input
           value={amount}
-          type="number"
+          type="text"
           name={"amount"}
-          placeholder={"Salary Amount"}
+          placeholder={"Expense Amount"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setInputState({ ...inputState, amount: parseInt(e.target.value) })
           }
@@ -88,13 +87,13 @@ function Form() {
           <option value="" disabled>
             Select Option
           </option>
-          <option value="salary">Salary</option>
-          <option value="freelancing">Freelancing</option>
-          <option value="investments">Investiments</option>
-          <option value="stocks">Stocks</option>
-          <option value="bitcoin">Bitcoin</option>
-          <option value="bank">Bank Transfer</option>
-          <option value="youtube">Youtube</option>
+          <option value="education">Education</option>
+          <option value="groceries">Groceries</option>
+          <option value="health">Health</option>
+          <option value="subscriptions">Subscriptions</option>
+          <option value="takeaways">Takeaways</option>
+          <option value="clothing">Clothing</option>
+          <option value="travelling">Travelling</option>
           <option value="other">Other</option>
         </select>
       </div>
@@ -102,7 +101,7 @@ function Form() {
         <textarea
           name="description"
           value={description}
-          placeholder="Add A Description"
+          placeholder="Add A Reference"
           id="description"
           cols={30}
           rows={4}
@@ -111,7 +110,7 @@ function Form() {
       </div>
       <div className="submit-btn">
         <Button
-          name={"Add Income"}
+          name={"Add Expense"}
           icon={plus}
           bPad={".8rem 1.6rem"}
           bRad={"30px"}
@@ -119,11 +118,11 @@ function Form() {
           color={"#fff"}
         />
       </div>
-    </FormStyled>
+    </ExpenseFormStyled>
   );
 }
 
-const FormStyled = styled.form`
+const ExpenseFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -149,9 +148,6 @@ const FormStyled = styled.form`
     input {
       width: 100%;
     }
-    #date {
-      width: 100%;
-    }
   }
 
   .selects {
@@ -175,4 +171,4 @@ const FormStyled = styled.form`
     }
   }
 `;
-export default Form;
+export default ExpenseForm;
