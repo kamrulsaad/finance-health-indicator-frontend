@@ -10,7 +10,7 @@ function Income() {
 
   useEffect(() => {
     getIncomes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <IncomeStyled>
@@ -25,8 +25,7 @@ function Income() {
           </div>
           <div className="incomes">
             {incomes.map((income, index) => {
-              const { id, title, amount, date, category, description, type } =
-                income;
+              const { id, title, amount, date, category, description } = income;
               return (
                 <IncomeItem
                   key={index}
@@ -35,7 +34,7 @@ function Income() {
                   description={description}
                   amount={amount}
                   date={date}
-                  type={type!}
+                  type={"income"}
                   category={category}
                   indicatorColor="var(--color-green)"
                   deleteItem={deleteIncome}

@@ -56,7 +56,7 @@ function ExpenseForm() {
       </div>
       <div className="input-control">
         <input
-          value={amount}
+          value={amount === 0 ? "" : amount}
           type="text"
           name={"amount"}
           placeholder={"Expense Amount"}
@@ -87,14 +87,11 @@ function ExpenseForm() {
           <option value="" disabled>
             Select Option
           </option>
-          <option value="education">Education</option>
-          <option value="groceries">Groceries</option>
-          <option value="health">Health</option>
-          <option value="subscriptions">Subscriptions</option>
-          <option value="takeaways">Takeaways</option>
-          <option value="clothing">Clothing</option>
-          <option value="travelling">Travelling</option>
-          <option value="other">Other</option>
+          <option value="notes payable">Note Payable</option>
+          <option value="loan">Loan</option>
+          <option value="accounts payable">Accounts Payable</option>
+          <option value="drawings">Drawings</option>
+          <option value="expenses">Expenses</option>
         </select>
       </div>
       <div className="input-control">

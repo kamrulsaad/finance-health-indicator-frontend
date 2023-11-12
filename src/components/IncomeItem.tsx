@@ -1,25 +1,20 @@
 import styled from "styled-components";
 import { dateFormat } from "../utils/dateFormat";
 import {
-  bitcoin,
-  book,
+  account,
   calender,
-  card,
-  circle,
-  clothing,
   comment,
+  couch,
   dollar,
-  food,
-  freelance,
-  medical,
+  drawings,
+  expense,
+  loan,
   money,
   piggy,
-  stocks,
-  takeaway,
   trash,
-  tv,
+  truck,
   users,
-  yt,
+  wallet,
 } from "../utils/Icons";
 import Button from "./Button";
 
@@ -41,29 +36,24 @@ function IncomeItem({
   amount,
   date,
   category,
-  description,
   deleteItem,
   indicatorColor,
   type,
 }: IncomeItemProps) {
   const categoryIcon = () => {
     switch (category) {
-      case "salary":
+      case "cash":
+        return wallet;
+      case "sales revenue":
         return money;
-      case "freelancing":
-        return freelance;
-      case "investments":
-        return stocks;
-      case "stocks":
+      case "service revenue":
         return users;
-      case "bitcoin":
-        return bitcoin;
-      case "bank":
-        return card;
-      case "youtube":
-        return yt;
-      case "other":
+      case "equipment":
+        return couch;
+      case "account receivable":
         return piggy;
+      case "supplies":
+        return truck;
       default:
         return "";
     }
@@ -71,24 +61,18 @@ function IncomeItem({
 
   const expenseCatIcon = () => {
     switch (category) {
-      case "education":
-        return book;
-      case "groceries":
-        return food;
-      case "health":
-        return medical;
-      case "subscriptions":
-        return tv;
-      case "takeaways":
-        return takeaway;
-      case "clothing":
-        return clothing;
-      case "travelling":
-        return freelance;
-      case "other":
-        return circle;
+      case "notes payable":
+        return money;
+      case "loan":
+        return loan;
+      case "accounts payable":
+        return account;
+      case "drawings":
+        return drawings;
+      case "expenses":
+        return expense;
       default:
-        return "";
+        return money;
     }
   };
 
@@ -109,7 +93,7 @@ function IncomeItem({
             </p>
             <p>
               {comment}
-              {description}
+              {category}
             </p>
           </div>
           <div className="btn-con">

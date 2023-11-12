@@ -57,10 +57,10 @@ function Form() {
       </div>
       <div className="input-control">
         <input
-          value={amount}
+          value={amount ? amount : ""}
           type="number"
           name={"amount"}
-          placeholder={"Salary Amount"}
+          placeholder={"Amount"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setInputState({ ...inputState, amount: parseInt(e.target.value) })
           }
@@ -69,7 +69,7 @@ function Form() {
       <div className="input-control">
         <DatePicker
           id="date"
-          placeholderText="Enter A Date"
+          placeholderText="Date of Transaction"
           selected={date ? new Date(date) : null}
           dateFormat="dd/MM/yyyy"
           onChange={(date) => {
@@ -87,15 +87,13 @@ function Form() {
         >
           <option value="" disabled>
             Select Option
-          </option>
-          <option value="salary">Salary</option>
-          <option value="freelancing">Freelancing</option>
-          <option value="investments">Investiments</option>
-          <option value="stocks">Stocks</option>
-          <option value="bitcoin">Bitcoin</option>
-          <option value="bank">Bank Transfer</option>
-          <option value="youtube">Youtube</option>
-          <option value="other">Other</option>
+          </option> 
+          <option value="cash">Cash</option>
+          <option value="sales revenue">Sales Revenue</option>
+          <option value="service revenue">Service Revenue</option>
+          <option value="equipment">Equipment</option>
+          <option value="account receivable">Account Receivable</option>
+          <option value="supplies">Supplies</option>
         </select>
       </div>
       <div className="input-control">
