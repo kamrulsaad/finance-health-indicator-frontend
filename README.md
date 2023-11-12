@@ -20,7 +20,7 @@ Welcome to a financial health indicator tool. This is a tool to track the financ
 
 - Live Site Link: [Click Here](https://financial-health-indicator.vercel.app/) to see the Live website.
 - Client side Github Repo: [Click Here](https://github.com/kamrulsaad/finance-health-indicator-frontend) to check my client side github repo for this project.
-- Client side Github Repo: [Click Here](https://github.com/kamrulsaad/finance-health-indicator-backend) to check my client side github repo for this project.
+- Server side Github Repo: [Click Here](https://github.com/kamrulsaad/finance-health-indicator-backend) to check my server side github repo for this project.
 
 ## Home Page Preview
 
