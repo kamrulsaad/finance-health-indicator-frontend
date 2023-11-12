@@ -1,19 +1,40 @@
+import { useState, useMemo } from "react";
 import styled from "styled-components";
 import bg from "./assets/bg.png";
 import { MainLayout } from "./styles/Layout";
 import Orb from "./components/Orb";
 import Navigation from "./components/Navigation";
+import Dashboard from "./components/Dashboard";
+import Income from "./components/Income";
+import Expense from "./components/Expense";
 
 function App() {
+  const [active, setActive] = useState<number>(1);
+
+  const displayData = (): React.ReactNode => {
+    switch (active) {
+      case 1:
+        return <Dashboard />;
+      case 2:
+        return <Dashboard />;
+      case 3:
+        return <Income />;
+      case 4:
+        return <Expense />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
+  const orbMemo = useMemo(() => <Orb />, []);
+
   return (
     <AppStyled bg={bg}>
       {/* {orbMemo} */}
       <MainLayout>
-        <Orb />
-        <Navigation />
-        {/* <main>
-      {displayData()}
-    </main> */}
+        {orbMemo}
+        <Navigation active={active} setActive={setActive} />
+        <main>{displayData()}</main>
       </MainLayout>
     </AppStyled>
   );

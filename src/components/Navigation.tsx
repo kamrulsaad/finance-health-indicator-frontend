@@ -3,7 +3,12 @@ import avatar from "../assets/avatar.jpg";
 import { menuItems } from "../utils/menuItems";
 import { signout } from "../utils/Icons";
 
-const Navigation = () => {
+interface NavigationProps {
+  active: number;
+  setActive: (id: number) => void;
+}
+
+const Navigation = ({ active, setActive }: NavigationProps) => {
   return (
     <NavStyled>
       <div className="user-con">
@@ -18,8 +23,8 @@ const Navigation = () => {
           return (
             <li
               key={item.id}
-              //   onClick={() => setActive(item.id)}
-              //   className={active === item.id ? "active" : ""}
+              onClick={() => setActive(item.id)}
+              className={active === item.id ? "active" : ""}
             >
               {item.icon}
               <span>{item.title}</span>
