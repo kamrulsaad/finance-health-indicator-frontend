@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import { InnerLayout } from '../styles/Layout';
+import Form from './Form';
+import { useGlobalContext } from '../utils/useGlobalContext';
 
 function Income() {
-    // const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
+    const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
 
     // useEffect(() =>{
     //     getIncomes()
@@ -14,7 +16,7 @@ function Income() {
                 {/* <h2 className="total-income">Total Income: <span>${totalIncome()}</span></h2> */}
                 <div className="income-content">
                     <div className="form-container">
-                        {/* <Form /> */}
+                        <Form />
                     </div>
                     <div className="incomes">
                         {/* {incomes.map((income) => {

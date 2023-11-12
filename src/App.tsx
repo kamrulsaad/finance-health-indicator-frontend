@@ -10,6 +10,8 @@ import Expense from "./components/Expense";
 
 function App() {
   const [active, setActive] = useState<number>(1);
+  
+  // const {addIncome} = useGlobalContext();
 
   const displayData = (): React.ReactNode => {
     switch (active) {
