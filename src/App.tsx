@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import bg from "./assets/bg.png";
+import { MainLayout } from "./styles/Layout";
+import Orb from "./components/Orb";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
     <AppStyled bg={bg}>
-      {/* {orbMemo}
-  <MainLayout>
-    <Navigation active={active} setActive={setActive} />
-    <main>
+      {/* {orbMemo} */}
+      <MainLayout>
+        <Orb />
+        <Navigation />
+        {/* <main>
       {displayData()}
-    </main>
-  </MainLayout> */}
+    </main> */}
+      </MainLayout>
     </AppStyled>
   );
 }
